@@ -1,4 +1,4 @@
-[See my progress here!](https://TYLPHE.github.io/dynamic-interactions/)
+[See my progress here!](https://TYLPHE.github.io/dynamic-interactions/dist/)
 
 # dynamic-interactions
 https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/dynamic-user-interface-interactions
