@@ -1,3 +1,5 @@
+[See my progress here!](https://TYLPHE.github.io/dynamic-interactions/)
+
 # dynamic-interactions
 https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/dynamic-user-interface-interactions
 
@@ -5,4 +7,3 @@ https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/le
   - dropdown menu
   - mobile menu
   - image slider
-[See my progress here!] (https://TYLPHE.github.io/dynamic-interactions/)
