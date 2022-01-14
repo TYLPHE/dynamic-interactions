@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+a {
+
+  color: cyan;
+}
+h1,
+p,
+ul,
+a {
+  margin: .5rem
+}
+
+/*about CSS*/
+.about{
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: .5rem;
+  margin: .5rem;
+  background-color: rgba(255, 255, 255, 0.137);
+}
+
+/*title CSS*/
+.avatar {
+  border-radius: 50%;
+  height: 2rem;
+  border: 1px solid 190b30cb;
+}
+.title {
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.1rem;
+  margin: 0.5rem;
+  min-width: 16rem;
+  text-align: center;
+  font-size: 1.7rem;
+  text-decoration: none;
+  color: inherit;
+  transition: 100ms;
+}
+.title:hover {
+  font-weight: 900;
+  background-color: rgba(0, 0, 0, 0.15);
+  font-size: 1.8rem;
+  transition: 100ms;
+}
+.title-text {
+  padding-top: 0.25rem;
+}
+
+/*cell phone CSS*/
+.body {
+  color: black;
+  background-color: white;
+  width: 428px;
+  height: 926px;
+  border: 12px double black;
+  border-radius: 10px;
+  margin: 1rem;
+}
+
+/*menu CSS*/
+.hamburger {
+  height: 2rem;
+  padding: .5rem;
+}
