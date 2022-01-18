@@ -1,14 +1,64 @@
 const mobile = {
+  // list of menu names
+  menuList: ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'],
+
+  // displays active menu at top of screen
+  activeMenuName: '',
+
+  // indicates if sidebar is open
+  openedSidebar: false,
+
   init: (div) => {
     div.appendChild(mobile.mainMenu());
   },
 
   // create a main menu section at top of the display
   mainMenu: () => {
+    const mainMenuTitle = document.createElement('div');
+    mainMenuTitle.classList.add('main-menu-title');
+    const topFlex = document.createElement('div');
+    topFlex.classList.add('top-flex');
+    topFlex.append(mobile.hamburger(), mainMenuTitle);
+    const botFlex = document.createElement('div');
+    botFlex.appendChild(mobile.botFlexMenus(mobile.menuList, 0, 1, 2));
     const mainMenuDiv = document.createElement('div');
     mainMenuDiv.classList.add('main-menu-div');
-    mainMenuDiv.appendChild(mobile.hamburger());
+    mainMenuDiv.append(topFlex, botFlex);
+    mainMenuTitle.textContent = mobile.activeMenuName;
     return mainMenuDiv;
+  },
+
+  // select 3 main tabs to see under hamburger icon
+  botFlexMenus: (
+    /* array */ arr,
+    /* array index number */ pos1,
+    /* array index number */ pos2,
+    /* array index number */ pos3,
+  ) => {
+    const left = document.createElement('div');
+    left.textContent = arr[pos1];
+    left.classList.add('left');
+    left.addEventListener('click', (e) => mobile.activatedMenu(e));
+    const center = document.createElement('div');
+    center.textContent = arr[pos2];
+    center.classList.add('center');
+    center.addEventListener('click', (e) => mobile.activatedMenu(e));
+    const right = document.createElement('div');
+    right.textContent = arr[pos3];
+    right.classList.add('right');
+    right.addEventListener('click', (e) => mobile.activatedMenu(e));
+    const botFlexChild = document.createElement('div');
+    botFlexChild.classList.add('bot-flex-child');
+    botFlexChild.append(left, center, right);
+    mobile.activeMenuName = arr[pos1];
+    return botFlexChild;
+  },
+
+  // generate and swipe to selected menu
+  activatedMenu: (e) => {
+    mobile.activeMenuName = e.target.innerText;
+    const title = document.querySelector('.main-menu-title');
+    title.textContent = mobile.activeMenuName;
   },
 
   // generate hamburger menu
@@ -24,7 +74,6 @@ const mobile = {
   },
 
   // a page of menu items slides in from the side
-  openedSidebar: false,
   openSidebar: () => {
     if (mobile.openedSidebar === false) {
       const sidebarDiv = document.createElement('div');
@@ -62,7 +111,6 @@ const mobile = {
     }
   },
 
-  menuList: ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'],
   sidebarList: (list) => {
     const sidebarMenuList = document.createElement('div');
     sidebarMenuList.classList.add('sidebar-menu-list');

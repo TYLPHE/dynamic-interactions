@@ -24,7 +24,7 @@ img {
   user-select: none;
 }
 
-/*about CSS*/
+/* about CSS */
 .about-div {
   border: 1px solid white;
   border-radius: 10px;
@@ -33,7 +33,7 @@ img {
   background-color: rgba(255, 255, 255, 0.137);
 }
 
-/*title CSS*/
+/* title CSS */
 .avatar {
   border-radius: 50%;
   height: 2rem;
@@ -64,7 +64,7 @@ img {
   padding-top: 0.25rem;
 }
 
-/*cell phone CSS*/
+/* cell phone CSS */
 .body-div {
   color: black;
   background-color: rgb(231, 225, 251);
@@ -74,18 +74,52 @@ img {
   border-radius: 10px;
   margin: 1rem;
   overflow: hidden;
+  user-select: none;
 }
 
-/*menu CSS*/
+/* menu CSS */
 .hamburger-icon {
   height: 2rem;
   padding: .5rem;
 }
+.main-menu-title {
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.top-flex {
+  display: flex;
+}
+.bot-flex-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+.left,
+.center,
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 100%;
+  border: 1px solid black;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.left:hover,
+.center:hover,
+.right:hover {
+  font-weight: bold;
+}
+
+/* sidebar CSS */
 .sidebar-div {
   position: relative;
   left: -100%;
   transition: .15s ease-out;
-  height: 95%;
+  height: 80%;
   width: 80%;
   background-color: rgb(83, 13, 80);
   border: 2px solid black;
