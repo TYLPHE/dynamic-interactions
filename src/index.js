@@ -15,22 +15,22 @@ const index = {
   titleDiv: () => {
     const titleDiv = document.createElement('a');
     titleDiv.href = 'https://github.com/TYLPHE';
-    titleDiv.classList.add('title');
+    titleDiv.classList.add('title-div');
     titleDiv.target = '_blank';
     const avatar = document.createElement('img');
     avatar.src = 'https://avatars.githubusercontent.com/u/85977718?v=4';
     avatar.classList.add('avatar');
-    const title = document.createElement('div');
-    title.innerText = 'Dynamic Interactions by TYLPHE';
-    title.classList.add('title-text');
-    titleDiv.append(avatar, title);
+    const titleText = document.createElement('div');
+    titleText.innerText = 'Dynamic Interactions by TYLPHE';
+    titleText.classList.add('title-text');
+    titleDiv.append(avatar, titleText);
     return titleDiv;
   },
 
   // create a mobile phone body and generate contents
   bodyDiv: () => {
     const bodyDiv = document.createElement('div');
-    bodyDiv.classList.add('body');
+    bodyDiv.classList.add('body-div');
     mobileDisplay(bodyDiv);
     return bodyDiv;
   },
@@ -38,7 +38,7 @@ const index = {
   // about project section
   aboutDiv: () => {
     const aboutDiv = document.createElement('div');
-    aboutDiv.classList.add('about');
+    aboutDiv.classList.add('about-div');
     const aboutTitle = document.createElement('h1');
     aboutTitle.textContent = 'About this project';
     const aboutParagraph1 = document.createElement('p');
