@@ -159,7 +159,6 @@ img {
 
 /* image slider CSS */
 .image-div {
-  border: 1px solid red;
   height: 88.8%;
 }
 .export-div {
@@ -172,7 +171,7 @@ img {
   justify-content: center;
   align-items: center;
   height: 100%;
-  border: 1px solid blue;
+  background-color: rgb(0, 0, 0);
 }
 button {
   width: 50%;
@@ -182,4 +181,20 @@ button {
 .button-div {
   display: flex;
   justify-content: space-evenly;
+}
+.image-slider-div {
+  max-width: 100%;
+}
+
+/* navigator CSS */
+.navigator-div {
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.dot-div {
+  color: white;
+  padding: .3rem;
 }

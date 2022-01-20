@@ -6,6 +6,8 @@ module.exports = {
   entry: {
     index: './src/index.js',
     mobileDisplay: './src/mobile-display/mobileDisplay.js',
+    imageArray: './src/imageArray.js',
+    imageSlider: './src/mobile-display/imageSlider.js',
   },
   plugins: [
     new HtmlWebpackPlugin({

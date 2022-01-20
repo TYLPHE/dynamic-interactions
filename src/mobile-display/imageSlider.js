@@ -1,15 +1,27 @@
+import imageArray from '../imageArray';
+
 const image = {
+  // activeImage is the index position of imageArray
+  activeImage: 0,
+
   init: (div) => {
     const exportDiv = document.createElement('div');
     exportDiv.classList.add('export-div');
-    exportDiv.append(image.mainImage(), image.imageButtons());
+    exportDiv.append(
+      image.mainImage(),
+      image.navigator(),
+      image.imageButtons(),
+    );
     div.appendChild(exportDiv);
   },
 
   mainImage: () => {
     const mainImageDiv = document.createElement('div');
     mainImageDiv.classList.add('main-image-div');
-    mainImageDiv.textContent = 'main-image-div';
+    const imageSliderDiv = document.createElement('img');
+    imageSliderDiv.classList.add('image-slider-div');
+    imageSliderDiv.src = imageArray[image.activeImage];
+    mainImageDiv.appendChild(imageSliderDiv);
     return mainImageDiv;
   },
 
@@ -29,11 +41,54 @@ const image = {
   },
 
   scrollLeft: () => {
-    console.log('scroll-left');
+    if (image.activeImage === 0) {
+      image.activeImage = imageArray.length - 1;
+    } else {
+      image.activeImage -= 1;
+    }
+    const imageSliderDiv = document.querySelector('.image-slider-div');
+    imageSliderDiv.src = imageArray[image.activeImage];
+    image.updateNavDots();
   },
 
   scrollRight: () => {
-    console.log('scroll-right');
+    if (image.activeImage === imageArray.length - 1) {
+      image.activeImage = 0;
+    } else {
+      image.activeImage += 1;
+    }
+    const imageSliderDiv = document.querySelector('.image-slider-div');
+    imageSliderDiv.src = imageArray[image.activeImage];
+    image.updateNavDots();
+  },
+
+  navigator: () => {
+    const navigatorDiv = document.createElement('div');
+    navigatorDiv.classList.add('navigator-div');
+    for (let i = 0; i < imageArray.length; i += 1) {
+      const dotDiv = document.createElement('div');
+      dotDiv.classList.add('dot-div');
+      dotDiv.id = `dot-${i}`;
+      if (i !== image.activeImage) {
+        dotDiv.textContent = '◯';
+      } else {
+        dotDiv.textContent = '⚫';
+      }
+      navigatorDiv.appendChild(dotDiv);
+    }
+    return navigatorDiv;
+  },
+
+  updateNavDots: () => {
+    for (let i = 0; i < imageArray.length; i += 1) {
+      const updateDot = document.querySelector(`#dot-${i}`);
+      if (updateDot.textContent === '⚫') {
+        updateDot.textContent = '◯';
+      }
+      if (i === image.activeImage) {
+        updateDot.textContent = '⚫';
+      }
+    }
   },
 };
 
