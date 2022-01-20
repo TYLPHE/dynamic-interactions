@@ -79,7 +79,7 @@ const mobile = {
       const sidebarDiv = document.createElement('div');
       sidebarDiv.append(mobile.sidebarList(mobile.menuList));
       sidebarDiv.classList.add('sidebar-div');
-      setTimeout(() => { sidebarDiv.classList.add('slide-in'); }, 1);
+      setTimeout(() => { sidebarDiv.classList.add('slide-in'); }, 10);
       mobile.openedSidebar = true;
       const bodyDiv = document.querySelector('.body-div');
       bodyDiv.appendChild(sidebarDiv);

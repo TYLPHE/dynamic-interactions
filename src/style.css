@@ -117,9 +117,11 @@ img {
 /* sidebar CSS */
 .sidebar-div {
   position: relative;
+  z-index: 1;
+  top: -95%;
   left: -100%;
   transition: .15s ease-out;
-  height: 80%;
+  height: 90%;
   width: 80%;
   background-color: rgb(83, 13, 80);
   border: 2px solid black;
@@ -153,4 +155,31 @@ img {
 }
 .sidebar-list:hover {
   font-weight: bold;
+}
+
+/* image slider CSS */
+.image-div {
+  border: 1px solid red;
+  height: 88.8%;
+}
+.export-div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main-image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 1px solid blue;
+}
+button {
+  width: 50%;
+  height: 3rem;
+  font-weight: bold;
+}
+.button-div {
+  display: flex;
+  justify-content: space-evenly;
 }

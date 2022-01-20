@@ -1,5 +1,6 @@
 import './style.css';
 import mobileDisplay from './mobile-display/mobileDisplay';
+import imageSlider from './mobile-display/imageSlider';
 
 const index = {
   init: () => {
@@ -32,7 +33,17 @@ const index = {
     const bodyDiv = document.createElement('div');
     bodyDiv.classList.add('body-div');
     mobileDisplay(bodyDiv);
+    // TODO: hamburger doesnt work when appending imageDiv
+    bodyDiv.append(index.imageDiv());
     return bodyDiv;
+  },
+
+  // imageDiv code generated in imageSlider.js
+  imageDiv: () => {
+    const imageDiv = document.createElement('div');
+    imageDiv.classList.add('image-div');
+    imageSlider(imageDiv);
+    return imageDiv;
   },
 
   // about project section
