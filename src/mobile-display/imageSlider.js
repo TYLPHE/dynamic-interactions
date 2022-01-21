@@ -4,6 +4,9 @@ const image = {
   // activeImage is the index position of imageArray
   activeImage: 0,
 
+  // previous image to transition off screen
+  previousImage: 0,
+
   init: (div) => {
     const exportDiv = document.createElement('div');
     exportDiv.classList.add('export-div');
@@ -42,8 +45,10 @@ const image = {
 
   scrollLeft: () => {
     if (image.activeImage === 0) {
+      image.previousImage = image.activeImage;
       image.activeImage = imageArray.length - 1;
     } else {
+      image.previousImage = image.activeImage;
       image.activeImage -= 1;
     }
     const imageSliderDiv = document.querySelector('.image-slider-div');
@@ -53,8 +58,10 @@ const image = {
 
   scrollRight: () => {
     if (image.activeImage === imageArray.length - 1) {
+      image.previousImage = image.activeImage;
       image.activeImage = 0;
     } else {
+      image.previousImage = image.activeImage;
       image.activeImage += 1;
     }
     const imageSliderDiv = document.querySelector('.image-slider-div');
@@ -68,6 +75,7 @@ const image = {
     for (let i = 0; i < imageArray.length; i += 1) {
       const dotDiv = document.createElement('div');
       dotDiv.classList.add('dot-div');
+      dotDiv.addEventListener('click', (e) => image.jumpToDot(e));
       dotDiv.id = `dot-${i}`;
       if (i !== image.activeImage) {
         dotDiv.textContent = '◯';
@@ -89,6 +97,14 @@ const image = {
         updateDot.textContent = '⚫';
       }
     }
+  },
+
+  jumpToDot: (e) => {
+    const targetDot = e.target.id.slice(4);
+    image.activeImage = parseInt(targetDot, 10);
+    const imageSliderDiv = document.querySelector('.image-slider-div');
+    imageSliderDiv.src = imageArray[image.activeImage];
+    image.updateNavDots();
   },
 };
 

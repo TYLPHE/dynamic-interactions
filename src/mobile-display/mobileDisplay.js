@@ -1,6 +1,6 @@
 const mobile = {
   // list of menu names
-  menuList: ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5', 'Menu 6'],
+  menuList: ['Trending', 'Subscribed', 'Bookmarks', 'Menu 4', 'Menu 5', 'Menu 6'],
 
   // displays active menu at top of screen
   activeMenuName: '',
