@@ -1,11 +1,10 @@
 import imageArray from '../imageArray';
 
 const image = {
-  // activeImage is the index position of imageArray
+  // left/active/right are the index positions of imageArray
   activeImage: 0,
-
-  // previous image to transition off screen
-  previousImage: 0,
+  leftImage: 0,
+  rightImage: 0,
 
   init: (div) => {
     const exportDiv = document.createElement('div');
@@ -21,10 +20,16 @@ const image = {
   mainImage: () => {
     const mainImageDiv = document.createElement('div');
     mainImageDiv.classList.add('main-image-div');
-    const imageSliderDiv = document.createElement('img');
-    imageSliderDiv.classList.add('image-slider-div');
-    imageSliderDiv.src = imageArray[image.activeImage];
-    mainImageDiv.appendChild(imageSliderDiv);
+    const imageSliderCenter = document.createElement('img');
+    imageSliderCenter.classList.add('image-slider-center');
+    imageSliderCenter.src = imageArray[image.activeImage];
+    const imageSliderLeft = document.createElement('img');
+    imageSliderLeft.classList.add('image-slider-left');
+    imageSliderLeft.src = imageArray[image.activeImage];
+    const imageSliderRight = document.createElement('img');
+    imageSliderRight.classList.add('image-slider-right');
+    imageSliderRight.src = imageArray[image.activeImage];
+    mainImageDiv.append(imageSliderLeft, imageSliderCenter, imageSliderRight);
     return mainImageDiv;
   },
 
@@ -32,40 +37,83 @@ const image = {
     const leftButton = document.createElement('button');
     leftButton.type = 'button';
     leftButton.textContent = '<<';
-    leftButton.onclick = () => image.scrollLeft();
+    leftButton.onclick = () => image.switchLeft();
     const rightButton = document.createElement('button');
     rightButton.type = 'button';
     rightButton.textContent = '>>';
-    rightButton.onclick = () => image.scrollRight();
+    rightButton.onclick = () => image.switchRight();
     const buttonDiv = document.createElement('div');
     buttonDiv.classList.add('button-div');
     buttonDiv.append(leftButton, rightButton);
     return buttonDiv;
   },
 
-  scrollLeft: () => {
-    if (image.activeImage === 0) {
-      image.previousImage = image.activeImage;
-      image.activeImage = imageArray.length - 1;
-    } else {
-      image.previousImage = image.activeImage;
-      image.activeImage -= 1;
+  imageAssignment: (/* 'left', 'right', or 'none' */ direction) => {
+    if (direction === 'right') {
+      if (image.activeImage === 0) {
+        image.activeImage = imageArray.length - 1;
+        image.leftImage = imageArray.length - 2;
+        image.rightImage = 0;
+      } else {
+        image.activeImage -= 1;
+        if (image.activeImage === 0) {
+          image.leftImage = imageArray.length - 1;
+        } else {
+          image.leftImage = image.activeImage - 1;
+        }
+        image.rightImage = image.activeImage + 1;
+      }
+    } else if (direction === 'left') {
+      if (image.activeImage === imageArray.length - 1) {
+        image.activeImage = 0;
+        image.leftImage = imageArray.length - 1;
+        image.rightImage = image.activeImage + 1;
+      } else {
+        image.activeImage += 1;
+        if (image.activeImage === imageArray.length - 1) {
+          image.rightImage = 0;
+        } else {
+          image.rightImage = image.activeImage + 1;
+        }
+        image.leftImage = image.activeImage - 1;
+      }
+    } else if (direction === 'none') {
+      image.leftImage = image.activeImage - 1;
+      image.rightImage = image.activeImage + 1;
+      if (image.activeImage === 0) {
+        image.leftImage = imageArray.length - 1;
+        image.rightImage = image.activeImage + 1;
+      }
+      if (image.activeImage === imageArray.length - 1) {
+        image.rightImage = 0;
+        image.leftImage = image.activeImage - 1;
+      }
     }
-    const imageSliderDiv = document.querySelector('.image-slider-div');
-    imageSliderDiv.src = imageArray[image.activeImage];
+    const left = document.querySelector('.image-slider-left');
+    const center = document.querySelector('.image-slider-center');
+    const right = document.querySelector('.image-slider-right');
+    left.src = imageArray[image.leftImage];
+    center.src = imageArray[image.activeImage];
+    right.src = imageArray[image.rightImage];
+  },
+
+  switchLeft: () => {
+    const mainImageDiv = document.querySelector('.main-image-div');
+    mainImageDiv.classList.add('shift-left');
+    setTimeout(() => {
+      mainImageDiv.classList.remove('shift-left');
+      image.imageAssignment('left');
+    }, 300);
     image.updateNavDots();
   },
 
-  scrollRight: () => {
-    if (image.activeImage === imageArray.length - 1) {
-      image.previousImage = image.activeImage;
-      image.activeImage = 0;
-    } else {
-      image.previousImage = image.activeImage;
-      image.activeImage += 1;
-    }
-    const imageSliderDiv = document.querySelector('.image-slider-div');
-    imageSliderDiv.src = imageArray[image.activeImage];
+  switchRight: () => {
+    const mainImageDiv = document.querySelector('.main-image-div');
+    mainImageDiv.classList.add('shift-right');
+    setTimeout(() => {
+      mainImageDiv.classList.remove('shift-right');
+      image.imageAssignment('right');
+    }, 300);
     image.updateNavDots();
   },
 
@@ -102,8 +150,7 @@ const image = {
   jumpToDot: (e) => {
     const targetDot = e.target.id.slice(4);
     image.activeImage = parseInt(targetDot, 10);
-    const imageSliderDiv = document.querySelector('.image-slider-div');
-    imageSliderDiv.src = imageArray[image.activeImage];
+    image.imageAssignment('none');
     image.updateNavDots();
   },
 };
