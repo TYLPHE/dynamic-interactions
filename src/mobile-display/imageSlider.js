@@ -101,20 +101,20 @@ const image = {
     const mainImageDiv = document.querySelector('.main-image-div');
     mainImageDiv.classList.add('shift-left');
     setTimeout(() => {
-      mainImageDiv.classList.remove('shift-left');
       image.imageAssignment('left');
+      image.updateNavDots();
+      mainImageDiv.classList.remove('shift-left');
     }, 300);
-    image.updateNavDots();
   },
 
   switchRight: () => {
     const mainImageDiv = document.querySelector('.main-image-div');
     mainImageDiv.classList.add('shift-right');
     setTimeout(() => {
-      mainImageDiv.classList.remove('shift-right');
       image.imageAssignment('right');
+      image.updateNavDots();
+      mainImageDiv.classList.remove('shift-right');
     }, 300);
-    image.updateNavDots();
   },
 
   navigator: () => {
