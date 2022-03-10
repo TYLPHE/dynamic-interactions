@@ -16,4 +16,7 @@ This project is designed for practicing everyday techniques used by JavaScript p
 The image slider pulls images from an array of image hyperlinks. The user may add as many image hyperlinks as they wish to customize the length of the slider. Clicking the previous and next buttons scrolls the images on and off screen to simulate a carousel. 
 
 ## Challenges
-The biggest challenge in this project was the sliding animation. If you remove `overflow: hidden`, you will see that 2 other divs are preloading the previous and next image in the array. Clicking the previous/next button will assign a class that applies the CSS property, `transform: translate()` to shift the entire div for 300ms. After 300ms, the class is removed and the position is reset back to the original position. On the user's side,  
+### Sliding images
+Behind `overflow: hidden`, 2 other divs are preloading the previous and next image in the array. Clicking the previous/next button will assign a class that applies the CSS property, `transform: translate()` to shift the entire div for 300ms. After 300ms, the class is removed and the position is reset back to the original position. 
+
+Because it loads only the previous and next images, clicking the previous/next buttons quickly will seem buggy as the divs are still loading the images from the URL. One way to resolve this is to save the images locally but I wanted to keep the size to a minimum for this project.
